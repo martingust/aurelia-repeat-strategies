@@ -7,7 +7,7 @@ Plugin that provides an iterator strategy for the repeater and an object to iter
 Install via JSPM
 
 ```javascript
-jspm install martingust/aurelia-repeat-strategies
+jspm install github:martingust/aurelia-repeat-strategies
 ```
 
 Load the plugin
