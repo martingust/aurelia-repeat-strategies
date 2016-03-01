@@ -2,6 +2,15 @@ import {createFullOverrideContext} from 'aurelia-templating-resources/repeat-uti
 
 export class IteratorStrategy {
   instanceChanged(repeat: Repeat, items: any): void {
+    let removePromise = repeat.viewSlot.removeAll(true);
+    if (removePromise instanceof Promise) {
+      removePromise.then(() => this._standardProcessItems(repeat, items));
+      return;
+    }
+    this._standardProcessItems(repeat, items);
+  }
+
+  _standardProcessItems(repeat, items) {
     let index = 0;
     for(let [key, value] of items) {
       let overrideContext = createFullOverrideContext(repeat, value, index, undefined, key);

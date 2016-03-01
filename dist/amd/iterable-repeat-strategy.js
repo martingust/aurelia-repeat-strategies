@@ -19,6 +19,20 @@ define(['exports', 'aurelia-templating-resources/repeat-utilities'], function (e
     _createClass(IteratorStrategy, [{
       key: 'instanceChanged',
       value: function instanceChanged(repeat, items) {
+        var _this = this;
+
+        var removePromise = repeat.viewSlot.removeAll(true);
+        if (removePromise instanceof Promise) {
+          removePromise.then(function () {
+            return _this._standardProcessItems(repeat, items);
+          });
+          return;
+        }
+        this._standardProcessItems(repeat, items);
+      }
+    }, {
+      key: '_standardProcessItems',
+      value: function _standardProcessItems(repeat, items) {
         var index = 0;
         var _iteratorNormalCompletion = true;
         var _didIteratorError = false;
