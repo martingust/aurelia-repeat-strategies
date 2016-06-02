@@ -1,5 +1,5 @@
 export class IterableValueConverter {
-  toView(value) {
+  toView(value = {}) {
     let index = 0;
     let propKeys = Reflect.ownKeys(value);
     return {
